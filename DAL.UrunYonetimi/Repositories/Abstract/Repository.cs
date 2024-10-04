@@ -38,12 +38,12 @@ namespace DAL.UrunYonetimi.Repositories.Abstract
 
         public IQueryable<TEntity> GetAll()
         {
-            return _entities.Where(e => e.DataStatus != DataStatus.Deleted);
+            return _entities.AsNoTracking().Where(e => e.DataStatus != DataStatus.Deleted);
         }
 
         public TEntity GetById(int id)
         {
-            return _entities.Find(id);
+            return _entities.AsNoTracking().FirstOrDefault(e=>e.Id == id);
             //return _entities.FirstOrDefault(e=>e.Id == id);
         }
 
@@ -61,8 +61,20 @@ namespace DAL.UrunYonetimi.Repositories.Abstract
 
         public void Update(TEntity entity)
         {
+           
             entity.DataStatus = entity.DataStatus != DataStatus.Deleted ? DataStatus.Updated : DataStatus.Deleted;
             entity.ModifiedDate = DateTime.Now;
+            entity.CreatedDate = GetById(entity.Id).CreatedDate;
+
+            foreach (var item in _context.ChangeTracker.Entries())
+            {
+                if(item.Entity.GetType() == typeof(TEntity))
+                {
+                    item.State = EntityState.Detached;
+                }
+            }
+
+            
             _entities.Update(entity);
             _context.SaveChanges();
         }

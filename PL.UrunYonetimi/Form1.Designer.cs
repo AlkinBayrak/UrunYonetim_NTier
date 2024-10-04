@@ -33,6 +33,7 @@
             txtName = new TextBox();
             txtPrice = new TextBox();
             grpProducts = new GroupBox();
+            lblSelectedProduct = new Label();
             dgvProducts = new DataGridView();
             btnUpdate = new Button();
             btnDelete = new Button();
@@ -75,6 +76,7 @@
             // 
             // grpProducts
             // 
+            grpProducts.Controls.Add(lblSelectedProduct);
             grpProducts.Controls.Add(dgvProducts);
             grpProducts.Controls.Add(btnUpdate);
             grpProducts.Controls.Add(txtName);
@@ -83,17 +85,26 @@
             grpProducts.Controls.Add(btnAdd);
             grpProducts.Controls.Add(label1);
             grpProducts.Controls.Add(label2);
-            grpProducts.Location = new Point(36, 45);
+            grpProducts.Location = new Point(36, 12);
             grpProducts.Name = "grpProducts";
-            grpProducts.Size = new Size(257, 356);
+            grpProducts.Size = new Size(278, 389);
             grpProducts.TabIndex = 4;
             grpProducts.TabStop = false;
             grpProducts.Text = "groupBox1";
             // 
+            // lblSelectedProduct
+            // 
+            lblSelectedProduct.AutoSize = true;
+            lblSelectedProduct.Location = new Point(15, 351);
+            lblSelectedProduct.Name = "lblSelectedProduct";
+            lblSelectedProduct.Size = new Size(102, 15);
+            lblSelectedProduct.TabIndex = 8;
+            lblSelectedProduct.Text = "Selected Product :";
+            // 
             // dgvProducts
             // 
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProducts.Location = new Point(6, 170);
+            dgvProducts.Location = new Point(15, 155);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProducts.Size = new Size(245, 169);
@@ -102,21 +113,23 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(90, 126);
+            btnUpdate.Location = new Point(96, 97);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(75, 23);
+            btnUpdate.Size = new Size(83, 23);
             btnUpdate.TabIndex = 7;
             btnUpdate.Text = "UPDATE";
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(162, 97);
+            btnDelete.Location = new Point(185, 97);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 6;
             btnDelete.Text = "DELETE";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnAdd
             // 
@@ -153,5 +166,6 @@
         private Button btnDelete;
         private Button btnAdd;
         private DataGridView dgvProducts;
+        private Label lblSelectedProduct;
     }
 }

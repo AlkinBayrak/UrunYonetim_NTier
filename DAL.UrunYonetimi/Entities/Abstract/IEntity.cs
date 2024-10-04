@@ -11,7 +11,7 @@ namespace DAL.UrunYonetimi.Entities.Abstract
     {
         int Id { get; set; }
 
-        DateTime Created { get; set; }
+        DateTime CreatedDate { get; set; }
 
         DateTime? ModifiedDate { get; set; }
 
